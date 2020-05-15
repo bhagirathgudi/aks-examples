@@ -22,8 +22,9 @@ jobs:
       uses: actions/checkout@v2
     - name: Azure cli install
       uses: Azure/cli@v1.0.0 
-    - name: Azure login
-      run : az login --service-principal -u ${{secrets.clientId}} -p ${{secrets.clientSecret}} -t ${{secrets.tenantId}}
+      with:
+        inlinescript: |
+          az login --service-principal -u ${{secrets.clientId}} -p ${{secrets.clientSecret}} -t ${{secrets.tenantId}}
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token 
     - name: Setup Terraform
